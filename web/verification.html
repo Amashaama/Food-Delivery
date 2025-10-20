@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodMart - Email Verification</title>
+    <!-- Favicons -->
+    <link href="assets/img/logoYellow.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-gold: #cda45e;
+            --gold-light: #e6c587;
+            --gold-dark: #b8904a;
+            --dark-bg: #000000;
+            --dark-card: #1a1a1a;
+            --dark-input: #2d2d2d;
+            --text-light: #ffffff;
+            --text-muted: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 20px;
+            background: var(--dark-card);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(205, 164, 94, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .auth-wrapper {
+            display: flex;
+            min-height: 600px;
+            position: relative;
+        }
+
+        .form-panel {
+            flex: 1;
+            padding: 20px 20px;
+            transition: all 0.6s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .welcome-panel {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--gold-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--dark-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-panel::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+        }
+
+        .welcome-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .form-title {
+            color: var(--primary-gold);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .verification-icon {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .verification-icon i {
+            font-size: 4rem;
+            color: var(--primary-gold);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-label {
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+        }
+
+        .code-input-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .code-input {
+            width: 50px;
+            height: 60px;
+            background: var(--dark-input);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .code-input:focus {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 20px rgba(205, 164, 94, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .code-input.filled {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            border-color: var(--primary-gold);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-gold), var(--gold-light));
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-bg);
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, var(--gold-light), var(--primary-gold));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(205, 164, 94, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            border-radius: 12px;
+            padding: 12px 30px;
+            color: var(--primary-gold);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(205, 164, 94, 0.3);
+        }
+
+        .resend-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        .resend-text {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .resend-link {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resend-link:hover {
+            color: var(--gold-light);
+            text-decoration: underline;
+        }
+
+        .resend-link:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .countdown {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .switch-text {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-muted);
+        }
+
+        .switch-link {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .switch-link:hover {
+            color: var(--gold-light);
+            text-decoration: underline;
+        }
+
+        .restaurant-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark-bg);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .alert {
+            border-radius: 12px;
+            border: none;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .alert-success {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+
+        .alert-danger {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+        }
+
+        .d-none {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .auth-wrapper {
+                flex-direction: column;
+            }
+
+            .welcome-panel {
+                order: -1;
+                min-height: 200px;
+            }
+
+            .form-panel {
+                padding: 40px 30px;
+            }
+
+            .welcome-content h2 {
+                font-size: 2rem;
+            }
+
+            .form-title {
+                font-size: 1.8rem;
+            }
+
+            .code-input-container {
+                gap: 10px;
+            }
+
+            .code-input {
+                width: 45px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-wrapper">
+            <!-- Verification Form -->
+            <div class="form-panel">
+                <div class="form-content">
+                    <div class="verification-icon">
+                        <i class="fas fa-envelope-open"></i>
+                    </div>
+                    
+                    <h1 class="form-title">Verify Your Email</h1>
+                    <p class="form-subtitle">
+                        We've sent a 6-digit verification code to<br>
+                        <strong id="userEmail">your email address</strong><br>
+                        Please enter the code below to continue
+                    </p>
+
+                    <div id="successMsg" class="alert alert-success d-none" role="alert">
+                        Email verified successfully! Redirecting...
+                    </div>
+
+                    <div id="errorMsg" class="alert alert-danger d-none" role="alert">
+                       
+                    </div>
+
+                    <form id="verificationForm">
+                        <div class="form-group">
+                            <label class="form-label">Enter 6-digit code</label>
+                            <div class="code-input-container">
+                                <input type="text" class="code-input" maxlength="1" id="code1">
+                                <input type="text" class="code-input" maxlength="1" id="code2">
+                                <input type="text" class="code-input" maxlength="1" id="code3">
+                                <input type="text" class="code-input" maxlength="1" id="code4">
+                                <input type="text" class="code-input" maxlength="1" id="code5">
+                                <input type="text" class="code-input" maxlength="1" id="code6">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" id="verifyBtn" onclick="verify(event);">
+                            <i class="fas fa-check-circle me-2"></i>Verify Email
+                        </button>
+                    </form>
+
+<!--                    <div class="resend-section">
+                        <p class="resend-text">Didn't receive the code?</p>
+                        <a href="#" class="resend-link" id="resendLink">Resend Code</a>
+                        <div class="countdown d-none" id="countdown">
+                            Resend available in <span id="countdownTimer">60</span> seconds
+                        </div>
+                    </div>-->
+
+                    <div class="switch-text">
+                        <a href="signUp.html" class="switch-link">← Back to Sign Up</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome Panel -->
+            <div class="welcome-panel">
+                <div class="welcome-content">
+                    <i class="fas fa-utensils restaurant-icon"></i>
+                    <h2>Almost There!</h2>
+                    <p>Just one more step to join the FoodMart family. Verify your email and start exploring our delicious world of flavors.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/verification.js"></script>
+
+    <script>
+        // Code input functionality
+        const codeInputs = document.querySelectorAll('.code-input');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const successMsg = document.getElementById('successMsg');
+        const errorMsg = document.getElementById('errorMsg');
+        const resendLink = document.getElementById('resendLink');
+        const countdown = document.getElementById('countdown');
+        const countdownTimer = document.getElementById('countdownTimer');
+        
+        let resendTimeout;
+        let countdownInterval;
+
+        // Auto-focus and auto-advance functionality
+        codeInputs.forEach((input, index) => {
+            input.addEventListener('input', function(e) {
+                const value = e.target.value;
+                
+                // Only allow numbers
+                if (!/^\d*$/.test(value)) {
+                    e.target.value = '';
+                    return;
+                }
+                
+                // Add filled class for visual feedback
+                if (value) {
+                    e.target.classList.add('filled');
+                    // Move to next input
+                    if (index < codeInputs.length - 1) {
+                        codeInputs[index + 1].focus();
+                    }
+                } else {
+                    e.target.classList.remove('filled');
+                }
+                
+                // Check if all inputs are filled
+                updateVerifyButton();
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                // Move to previous input on backspace
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    codeInputs[index - 1].focus();
+                }
+            });
+            
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const paste = e.clipboardData.getData('text');
+                const digits = paste.replace(/\D/g, '').slice(0, 6);
+                
+                digits.split('').forEach((digit, i) => {
+                    if (codeInputs[i]) {
+                        codeInputs[i].value = digit;
+                        codeInputs[i].classList.add('filled');
+                    }
+                });
+                
+                updateVerifyButton();
+            });
+        });
+
+        function updateVerifyButton() {
+            const allFilled = Array.from(codeInputs).every(input => input.value);
+            verifyBtn.disabled = !allFilled;
+        }
+  
+
+        // Add smooth transitions
+        codeInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>

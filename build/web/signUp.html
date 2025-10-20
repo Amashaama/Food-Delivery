@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodMart - Sign Up</title>
+    <!-- Favicons -->
+    <link href="assets/img/logoYellow.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+    <style>
+        :root {
+            --primary-gold: #cda45e;
+            --gold-light: #e6c587;
+            --gold-dark: #b8904a;
+            --dark-bg: #000000;
+            --dark-card: #1a1a1a;
+            --dark-input: #2d2d2d;
+            --text-light: #ffffff;
+            --text-muted: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 20px;
+            background: var(--dark-card);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(205, 164, 94, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .auth-wrapper {
+            display: flex;
+            min-height: 600px;
+            position: relative;
+        }
+
+        .form-panel {
+            flex: 1;
+            padding: 40px 40px;
+            transition: all 0.6s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-panel {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--gold-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--dark-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-panel::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+        }
+
+        .welcome-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .form-title {
+            color: var(--primary-gold);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-label {
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-control {
+            background: var(--dark-input);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: var(--text-light);
+            padding: 15px 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-control:focus {
+            background: var(--dark-input);
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 20px rgba(205, 164, 94, 0.3);
+            color: var(--text-light);
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: #888;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-gold), var(--gold-light));
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-bg);
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, var(--gold-light), var(--primary-gold));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(205, 164, 94, 0.4);
+        }
+
+        .btn-outline {
+            background: #000000;
+            border: 2px solid var(--primary-gold);
+            border-radius: 12px;
+            padding: 12px 30px;
+            color: var(--primary-gold);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13, 13, 12, 0.3);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #444;
+        }
+
+        .divider span {
+            background: var(--dark-card);
+            color: var(--text-muted);
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .social-btn {
+            background: var(--dark-input);
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 12px;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .social-btn:hover {
+            background: #333;
+            border-color: var(--primary-gold);
+            color: var(--text-light);
+            transform: translateY(-1px);
+        }
+
+        .forgot-link {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-link:hover {
+            color: var(--gold-light);
+            text-decoration: underline;
+        }
+
+        .switch-text {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-muted);
+        }
+
+        .switch-link {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .switch-link:hover {
+            color: var(--gold-light);
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .checkbox-custom {
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .checkbox-custom input {
+            margin-right: 10px;
+            accent-color: var(--primary-gold);
+        }
+
+        .restaurant-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark-bg);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .auth-wrapper {
+                flex-direction: column;
+            }
+
+            .welcome-panel {
+                order: -1;
+                min-height: 200px;
+            }
+
+            .form-panel {
+                padding: 40px 30px;
+            }
+
+            .welcome-content h2 {
+                font-size: 2rem;
+            }
+
+            .form-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-wrapper">
+
+            <!-- Sign Up Form -->
+            <div class="form-panel" id="signupPanel">
+                <div class="form-content">
+                    <h1 class="form-title">Join Us Today</h1>
+                    <p class="form-subtitle">Create your account and discover amazing flavors</p>
+                    <div id="errorMsg" class="alert alert-danger d-none" role="alert"></div>
+
+
+                    <form id="signupForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" placeholder="First name" id="firstName">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Last name" id="lastName">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="Enter your email" id="email">
+                        </div>
+                        
+                         <div class="form-group">
+                            <label class="form-label">Mobile</label>
+                            <input type="text" class="form-control" placeholder="Enter your mobile" id="mobile">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" placeholder="Create a password" id="password">
+                        </div>
+
+
+
+                        <button class="btn btn-primary" onclick="signUp(event);">
+                            <i class="fas fa-user-plus me-2"></i>Create Account
+                        </button>
+
+                    </form>
+
+
+
+                    <div class="switch-text">
+                        Already have an account? <a href="signIn.html" class="switch-link">Sign in here</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome Panel -->
+            <div class="welcome-panel" id="welcomePanel">
+                <div class="welcome-content">
+                    <i class="fas fa-utensils restaurant-icon"></i>
+                    <h2>FoodMart</h2>
+                    <p>Experience the finest cuisine delivered right to your doorstep. Fresh ingredients, authentic
+                        flavors, and unforgettable dining experiences await you.</p>
+                    <a href="index.html" class="btn-outline">
+                        <span >Visit Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+
+    <script src="assets/js/signUp.js"></script>
+
+    <script>
+
+
+        // Add smooth transitions and hover effects
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function () {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+
+            input.addEventListener('blur', function () {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>

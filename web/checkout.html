@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Checkout - FoodMart</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+
+        <!-- Favicons -->
+         <link href="assets/img/logoYellow.png" rel="icon">
+        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com" rel="preconnect">
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/notification.css">
+
+        <!-- Main CSS File -->
+        <link href="assets/css/main.css" rel="stylesheet">
+
+        <style>
+            /* Checkout Specific Styles */
+            .checkout-hero {
+                background: linear-gradient(rgba(12, 11, 9, 0.8), rgba(12, 11, 9, 0.8)), url('assets/img/hero-bg.jpg');
+                background-size: cover;
+                background-position: center;
+                padding: 120px 0 80px 0;
+                text-align: center;
+                color: var(--default-color);
+            }
+
+            .checkout-container {
+                padding: 60px 0;
+                background-color: #313233;
+            }
+
+            .cart-section, .checkout-form-section {
+                background: rgb(42, 39, 39);
+                border-radius: 10px;
+                padding: 30px;
+                margin-bottom: 30px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .cart-stats {
+                background: linear-gradient(135deg, #d4af37, #efd49c);
+                padding: 25px;
+                border-radius: 10px;
+                margin-bottom: 30px;
+            }
+
+            .cart-stats h4 {
+                margin-bottom: 20px;
+                color: #090909;
+                font-weight: 900;
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 20px;
+            }
+
+            .stat-item {
+                text-align: center;
+            }
+
+            .stat-number {
+                display: block;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #0c0b09;
+                margin-bottom: 5px;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+                color: #000000;
+                font-weight: 700;
+            }
+
+
+
+
+            .checkout-form h4 {
+                color: #ffffff;
+                margin-bottom: 25px;
+                font-weight: 600;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 500;
+                color: #ffffff;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #080707;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: border-color 0.3s ease;
+            }
+
+            select:disabled {
+                background-color: #f0f0f0; /* Light gray background */
+                color: #333;               /* Dark text for readability */
+                opacity: 1;                /* Prevents dimming effect */
+                cursor: not-allowed;       /* Optional: indicates non-interactive */
+            }
+
+            .form-control:focus {
+                outline: none;
+                border-color: #d4af37;
+                box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            }
+
+            .order-summary {
+                background: #212120;
+                padding: 25px;
+                border-radius: 10px;
+                margin-top: 30px;
+            }
+
+            .order-summary h5 {
+                color: #ffffff;
+                margin-bottom: 20px;
+                font-weight: 600;
+            }
+
+            .summary-row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 12px;
+                padding: 8px 0;
+            }
+
+            .summary-row.total {
+                border-top: 2px solid #d4af37;
+                margin-top: 15px;
+                padding-top: 15px;
+                font-weight: 700;
+                font-size: 1.2rem;
+                color: #fefefd;
+            }
+
+            .btn-place-order {
+                background: linear-gradient(135deg, #d4af37, #f4e4a0);
+                color: #0c0b09;
+                border: none;
+                padding: 15px 40px;
+                border-radius: 8px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .btn-place-order:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            }
+
+            .empty-cart {
+                text-align: center;
+                padding: 60px 20px;
+                color: #666;
+            }
+
+            .empty-cart i {
+                font-size: 4rem;
+                color: #d4af37;
+                margin-bottom: 20px;
+            }
+
+            .empty-cart h3 {
+                margin-bottom: 15px;
+                color: #0c0b09;
+            }
+
+            .btn-browse-menu {
+                background: #d4af37;
+                color: white;
+                text-decoration: none;
+                padding: 12px 30px;
+                border-radius: 8px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 20px;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn-browse-menu:hover {
+                background: #b8941f;
+                color: white;
+                text-decoration: none;
+            }
+
+            .payment-methods {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .payment-method {
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 15px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .payment-method:hover,
+            .payment-method.selected {
+                border-color: #d4af37;
+                background: rgba(212, 175, 55, 0.1);
+            }
+
+            .payment-method i {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+                color: #ffb300;
+            }
+
+            .payment-method.selected i {
+                color: #ff8000;
+            }
+
+            .payment-method-txt{
+                color: white;
+                font-weight: bold;
+            }
+
+            .delivery-options {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .delivery-option {
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .delivery-option:hover,
+            .delivery-option.selected {
+                border-color: #f8e5a4;
+                background: rgba(212, 175, 55, 0.1);
+            }
+
+            .delivery-option h6 {
+                margin-bottom: 8px;
+                color: #ffaa00;
+                font-weight: bold;
+            }
+
+            .delivery-option small {
+                color: #ffffff;
+            }
+
+            @media (max-width: 768px) {
+                .cart-item {
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                .cart-item-img {
+                    margin-right: 0;
+                    margin-bottom: 15px;
+                }
+
+                .stats-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+
+                .delivery-options {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+
+    <body class="checkout-page" onload="loadCheckoutData();">
+
+        <header id="header" class="header fixed-top">
+            <div class="topbar d-flex align-items-center">
+                <div class="container d-flex justify-content-center justify-content-md-between">
+                    <div class="contact-info d-flex align-items-center">
+                        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">foodmart@gmail.com</a></i>
+                        <i class="bi bi-phone d-flex align-items-center ms-4"><span>081  2345678</span></i>
+                    </div>
+                    <div class="languages d-none d-md-flex align-items-center">
+                        <ul>
+                            <li><a href="signUp.html">Join Us</a></li>
+                            <li><a href="signIn.html">Log In</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="branding d-flex align-items-center">
+                <div class="container position-relative d-flex align-items-center justify-content-between">
+                    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                        <h1 class="sitename">FoodMart</h1>
+                    </a>
+
+                    <nav id="navmenu" class="navmenu">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="advancedSearch.html">Advanced Search</a></li>
+                            <li><a href="userProfile.html">My Account</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+
+
+
+                        </ul>
+                        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                    </nav>
+
+                    <a class="btn-book-a-table d-none d-xl-block" href="#footer">Contact</a>
+                </div>
+            </div>
+
+        </header>
+
+        <main class="main">
+            <!-- Hero Section -->
+            <section class="checkout-hero">
+                <div class="container">
+                    <h1>Checkout</h1>
+                    <p>Complete your order and enjoy our delicious food</p>
+                </div>
+            </section>
+
+            <!-- Checkout Section -->
+            <section class="checkout-container">
+                <div class="container">
+                    <div class="row">
+                        <!-- Cart Section -->
+                        <div class="col-lg-8">
+                            <div class="cart-section">
+                                <!-- Cart Stats -->
+                                <div class="cart-stats">
+                                    <h4>Order Summary</h4>
+                                    <div class="stats-grid">
+                                        <div class="stat-item">
+                                            <span class="stat-number" id="totalItems">3</span>
+                                            <span class="stat-label">Items</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number" id="subtotal">$47.50</span>
+                                            <span class="stat-label">Subtotal(Rs.)</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number" id="deliveryFee">0.00</span>
+                                            <span class="stat-label">Delivery(Rs.)</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number" id="totalAmount">0.00</span>
+                                            <span class="stat-label">Total(Rs.)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cart Items -->
+                                <!-- Cart Items -->
+                                <div id="cartItems">
+<!--                                     Sample Cart Items 
+                                    <div class="cart-item d-flex align-items-center" data-item-id="1" data-price="18.50">
+                                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=200&h=200&fit=crop&crop=center"
+                                             alt="Margherita Pizza" class="cart-item-img">
+                                        <div class="cart-item-content">
+                                            <h3 class="cart-item-title">Margherita Pizza</h3>
+                                            <p class="cart-item-description">Fresh tomato sauce, mozzarella cheese, basil
+                                                leaves,
+                                                and olive oil on a crispy thin crust</p>
+                                            <div class="cart-item-price">$18.50 each</div>
+                                            <div class="cart-actions">
+                                                <div class="quantity-controls">
+                                                    <button class="quantity-btn" onclick="decreaseQuantity()">
+                                                        <i class="bi bi-dash"></i>
+                                                    </button>
+                                                    <input type="number" class="quantity-input" id="add-to-cart-qty"
+                                                           value="1" min="1" max="10">
+                                                    <button class="quantity-btn" onclick="increaseQuantity()">
+                                                        <i class="bi bi-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <button class="btn-save-later" onclick="saveForLater(1)">
+                                                    <i class="bi bi-heart"></i>Save for Later
+                                                </button>
+                                                <button class="btn-remove-cart" onclick="removeFromCart(1)">
+                                                    <i class="bi bi-trash"></i>Remove
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>-->
+
+
+                                </div>
+
+                                <!-- Empty Cart State -->
+                                <div id="emptyCart" class="empty-cart" style="display: none;">
+                                    <i class="bi bi-cart-x"></i>
+                                    <h3>Your Cart is Empty</h3>
+                                    <p>Looks like you haven't added any dishes to your cart yet. Browse our delicious menu and add your favorites!</p>
+                                    <a href="menu.html" class="btn-browse-menu">
+                                        <i class="bi bi-arrow-right"></i>Browse Menu
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Checkout Form Section -->
+                        <div class="col-lg-4">
+                            <div class="checkout-form-section">
+                                <h4  style="color: #f7be62; font-weight: bold;"><i class="bi bi-person-fill me-2 mb-5"></i>Customer Information</h4>
+
+                                <div class="form-group mb-5 mt-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="checkbox">
+                                        <label  class="form-check-label">Use Saved Delivery Details</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mt-5">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <input type="text" id="first-name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" id="last-name" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Address Line 1</label>
+                                        <input type="text" id="line-one" class="form-control" placeholder="Street address, P.O. box, company name, c/o">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Address Line 2</label>
+                                        <input type="text" id="line-two" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Postal Code</label>
+                                        <input type="text" id="postal-code" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <select id="city" class="form-control">
+                                            <option value="0">Select City</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone Number </label>
+                                        <input type="tel" id="mobile" class="form-control" >
+                                    </div>
+                                </div>
+
+
+                                <!-- Final Order Summary -->
+                                <div class="order-summary">
+                                    <h5>Final Summary</h5>
+                                    <div class="summary-row">
+                                        <span>Subtotal:</span>
+                                        <span>Rs. <span id="finalSubtotal">0.00</span> </span> 
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Delivery Fee:</span>
+                                        <span>Rs. <span id="finalDeliveryFee">0.00</span></span>
+                                    </div>
+                                   
+                                    <div class="summary-row total">
+                                        <span>Total:</span>
+                                        <span>Rs. <span id="finalTotal"></span></span>
+                                    </div>
+                                    <button type="button" class="btn-place-order" onclick="checkout()">
+                                        <i class="bi bi-check-circle me-2"></i>Place Order
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer id="footer" class="footer">
+            <div class="container footer-top">
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-6 footer-about">
+                        <a href="index.html" class="logo d-flex align-items-center">
+                            <span class="sitename">FoodMart</span>
+                        </a>
+                        <div class="footer-contact pt-3">
+                            <p>No 85 Kandy road</p>
+                            <p>Sri Lanka</p>
+                            <p class="mt-3"><strong>Phone:</strong> <span>081 2345678</span></p>
+                            <p><strong>Email:</strong> <span>foodmart@gmail.com</span></p>
+                        </div>
+                        <div class="social-links d-flex mt-4">
+                            <a href=""><i class="bi bi-twitter-x"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="advancedSearch.html">Advanced Search</a></li>
+                            <li><a href="cart.html">cart</a></li>
+                            <li><a href="userProfile.html">My Profile</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Categories</h4>
+                        <ul>
+                            <li><a href="#">Main Courses</a></li>
+                            <li><a href="#">Salads</a></li>
+                            <li><a href="#">Desserts</a></li>
+                            <li><a href="#">Beverages</a></li>
+                            <li><a href="#">Special Offers</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 footer-newsletter">
+                        <h4>Stay Updated</h4>
+                        <p>Subscribe to get the latest news and offers</p>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Your email">
+                            <input type="submit" value="Subscribe">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container copyright text-center mt-4">
+                <p>© <span>Copyright</span> <strong class="px-1 sitename">FoodMart</strong> <span>All Rights Reserved</span>
+                </p>
+                <div class="credits">
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+                class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Vendor JS Files -->
+         <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+
+
+        <!-- Template Main JS File -->
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/notification.js"></script>
+        <script src="assets/js/checkout.js"></script>
+
+        <script>
+
+                                        // Quantity functions
+                                        function increaseQuantity() {
+                                            const input = document.getElementById('add-to-cart-qty');
+                                            if (parseInt(input.value) < 10) {
+                                                input.value = parseInt(input.value) + 1;
+                                                quantity = parseInt(input.value);
+
+                                            }
+                                        }
+
+                                        function decreaseQuantity() {
+                                            const input = document.getElementById('add-to-cart-qty');
+                                            if (parseInt(input.value) > 1) {
+                                                input.value = parseInt(input.value) - 1;
+                                                quantity = parseInt(input.value);
+
+                                            }
+                                        }
+
+                                        // Add CSS animations
+                                        const style = document.createElement('style');
+                                        style.textContent = `
+                @keyframes slideOut {
+                    0% { transform: translateX(0); opacity: 1; }
+                    100% { transform: translateX(-100%); opacity: 0; }
+                }
+            
+                @keyframes slideInRight {
+                    0% { transform: translateX(100%); opacity: 0; }
+                    100% { transform: translateX(0); opacity: 1; }
+                }
+            
+                @keyframes slideOutRight {
+                    0% { transform: translateX(0); opacity: 1; }
+                    100% { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+
+
+        </script>
+
+    </body>
+
+</html>

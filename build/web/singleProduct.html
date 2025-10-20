@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Single Product View - FoodMart</title>
+        <meta name="description" content="Fresh Atlantic salmon grilled to perfection with herbs and spices">
+        <meta name="keywords" content="salmon, grilled fish, restaurant, fine dining">
+
+        <!-- Favicons -->
+        <link href="assets/img/logoYellow.png" rel="icon">
+        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com" rel="preconnect">
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/notification.css">
+
+        <!-- Main CSS File -->
+        <link href="assets/css/main.css" rel="stylesheet">
+
+    </head>
+
+    <body onload="mainLoad();">
+
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+     <header id="header" class="header fixed-top">
+            <div class="topbar d-flex align-items-center">
+                <div class="container d-flex justify-content-center justify-content-md-between">
+                    <div class="contact-info d-flex align-items-center">
+                        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">foodmart@gmail.com</a></i>
+                        <i class="bi bi-phone d-flex align-items-center ms-4"><span>081  2345678</span></i>
+                    </div>
+                    <div class="languages d-none d-md-flex align-items-center">
+                        <ul>
+                            <li><a href="signUp.html">Join Us</a></li>
+                            <li><a href="signIn.html">Log In</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="branding d-flex align-items-center">
+                <div class="container position-relative d-flex align-items-center justify-content-between">
+                    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                        <h1 class="sitename">FoodMart</h1>
+                    </a>
+
+                    <nav id="navmenu" class="navmenu">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="advancedSearch.html">Advanced Search</a></li>
+                            <li><a href="userProfile.html">My Account</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+
+
+
+                        </ul>
+                        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                    </nav>
+
+                    <a class="btn-book-a-table d-none d-xl-block" href="#footer">Contact</a>
+                </div>
+            </div>
+
+        </header>
+
+
+
+        <!-- Product Section -->
+        <section class="product-section">
+            <div class="container">
+                <!-- Success Message -->
+                <div class="alert alert-success" id="cart-alert">
+                    <i class="bi bi-check-circle"></i> Product added to cart successfully!
+                </div>
+
+                <div class="row">
+                    <!-- Product Images -->
+                    <div class="col-lg-6">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop"
+                                 alt="Grilled Salmon Deluxe" class="product-image" id="main-image">
+                            <div class="product-badge" id="product-badge">Best Food</div>
+                        </div>
+                        <div class="product-gallery">
+                            <img id="gallery-thumb1" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=100&h=100&fit=crop" alt="View 1"
+                                 class="gallery-thumb active"
+                                 data-image="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop">
+                            <img id="gallery-thumb2" src="https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=100&h=100&fit=crop" alt="View 2"
+                                 class="gallery-thumb"
+                                 data-image="https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=600&h=400&fit=crop">
+                            <img id="gallery-thumb3" src="https://images.unsplash.com/photo-1574781330855-d0db0cc01e94?w=100&h=100&fit=crop" alt="View 3"
+                                 class="gallery-thumb"
+                                 data-image="https://images.unsplash.com/photo-1574781330855-d0db0cc01e94?w=600&h=400&fit=crop">
+<!--                            <img id="gallery-thumb4" src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=100&h=100&fit=crop" alt="View 4"
+                                 class="gallery-thumb"
+                                 data-image="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=600&h=400&fit=crop">-->
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="col-lg-6">
+                        <div class="product-info">
+                            <h1 id="productTitle" class="product-title">Grilled Chicken Burger</h1>
+
+                            <div class="product-rating">
+
+                                <span id="publishedOn" class="rating-text">Added on: July 21, 2025 - 09:52 AM</span>
+                            </div>
+
+                            <div class="product-price">Rs.<span id="productPrice"></span></div>
+
+                            <p id="productDescription" class="product-description">
+                                Spicy and crispy chicken patty with lettuce, mayo, and fresh tomatoes, served in a toasted sesame bun.
+                            </p>
+
+                            <!-- Custom fields from your database -->
+                            <div class="product-details-list mb-3">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <span class="badge bg-success me-2"><i class="bi bi-archive"></i></span>
+                                        <strong>Category :</strong><span id="category"> Burgers</span>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span class="badge bg-primary me-2"><i class="bi bi-hash"></i></span>
+                                        <strong>Sub-category :</strong> <span id="subCategory" > Chicken Burgers</span>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span class="badge bg-info me-2"><i class="bi bi-patch-check"></i></span>
+                                        <strong>Quality :</strong> <span id="quality"> Fresh</span>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span class="badge bg-warning text-dark me-2"><i class="bi bi-lightning-charge"></i></span>
+                                        <strong>Status :</strong><span id="status"> Available</span>
+                                    </li>
+                                    <li>
+                                        <span class="badge bg-secondary me-2"><i class="bi bi-box-seam"></i></span>
+                                        <strong>In Stock :</strong><span id="stock"> 23 Units</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+                            <!-- Quantity Selector -->
+                            <div class="quantity-selector">
+                                <span class="quantity-label">Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="decreaseQuantity()">
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                    <input type="number" class="quantity-input" id="add-to-cart-qty" value="1" min="1">
+                                    <button class="quantity-btn" onclick="increaseQuantity()">
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons d-flex flex-wrap gap-2">
+                                <button class="btn btn-add-cart flex-grow-1 d-flex align-items-center justify-content-center" id="add-to-cart-main">
+                                    <i class="bi bi-cart-plus me-2"></i> Add to Cart
+                                </button>
+<!--
+                                <button class="btn btn-wishlist flex-grow-1 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-heart"></i>
+                                </button>-->
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+<!--                 Nutritional Information 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="nutritional-info">
+                            <h3 class="nutrition-title">Nutritional Information (per serving)</h3>
+                            <div class="nutrition-grid">
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">380</div>
+                                    <div class="nutrition-label">Calories</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">35g</div>
+                                    <div class="nutrition-label">Protein</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">12g</div>
+                                    <div class="nutrition-label">Carbs</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">18g</div>
+                                    <div class="nutrition-label">Fat</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">2g</div>
+                                    <div class="nutrition-label">Fiber</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">580mg</div>
+                                    <div class="nutrition-label">Sodium</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </section>
+        <!-- Related Products Section -->
+        <section class="related-products-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="section-title">Related Products</h2>
+                        <p class="section-subtitle">You might also like these dishes</p>
+                    </div>
+                </div>
+
+                <div class="row" id="smiler-product-main">
+                    <!-- Related Product 1 -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 mb-4" id="similar-product">
+                        <div class="related-product-card">
+                            <div class="related-product-image">
+                                <a href="#" id="similar-product-a1">
+                                    <img id="similar-product-image" src="https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=300&h=250&fit=crop"
+                                         alt="Pan-Seared Halibut">
+                                </a>
+                                <div id="similar-product-sub-category" class="related-product-badge">Popular</div>
+                                <div class="related-product-overlay">
+                                    <a  class="btn btn-quick-view" href="#" id="similar-product-a2">
+                                        <i class="bi bi-eye"></i></a>
+
+                                    <a href="#"  id="similar-product-add-to-cart" class="btn btn-quick-add">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="related-product-info">
+                                <h4 class="related-product-title" id="similar-product-title" >Pan-Seared Halibut</h4>
+                                <div  id="similar-product-price" class="related-product-price">$32.99</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Related Product 2 -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                        <div class="related-product-card">
+                            <div class="related-product-image">
+                                <img src="https://images.unsplash.com/photo-1574781330855-d0db0cc01e94?w=300&h=250&fit=crop"
+                                     alt="Lobster Thermidor">
+                                <div class="related-product-badge">Chef's Pick</div>
+                                <div class="related-product-overlay">
+                                    <button class="btn btn-quick-view" onclick="quickView('lobster')">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-quick-add" onclick="quickAdd('lobster')">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="related-product-info">
+                                <h4 class="related-product-title">Lobster Thermidor</h4>
+                                <div class="related-product-rating">
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                    </div>
+                                    <span>(4.8)</span>
+                                </div>
+                                <div class="related-product-price">$45.99</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Related Product 3 -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                        <div class="related-product-card">
+                            <div class="related-product-image">
+                                <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=300&h=250&fit=crop"
+                                     alt="Sea Bass Fillet">
+                                <div class="related-product-overlay">
+                                    <button class="btn btn-quick-view" onclick="quickView('seabass')">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-quick-add" onclick="quickAdd('seabass')">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="related-product-info">
+                                <h4 class="related-product-title">Mediterranean Sea Bass</h4>
+                                <div class="related-product-rating">
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    </div>
+                                    <span>(4.4)</span>
+                                </div>
+                                <div class="related-product-price">$29.99</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Related Product 4 -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                        <div class="related-product-card">
+                            <div class="related-product-image">
+                                <img src="https://images.unsplash.com/photo-1559847844-d720fad93d81?w=300&h=250&fit=crop"
+                                     alt="Grilled Swordfish">
+                                <div class="related-product-overlay">
+                                    <button class="btn btn-quick-view" onclick="quickView('swordfish')">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-quick-add" onclick="quickAdd('swordfish')">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="related-product-info">
+                                <h4 class="related-product-title">Grilled Swordfish Steak</h4>
+                                <div class="related-product-rating">
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star"></i>
+                                    </div>
+                                    <span>(4.1)</span>
+                                </div>
+                                <div class="related-product-price">$34.99</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q&A Section -->
+        <section class="qa-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="section-title">Questions & Answers</h2>
+                        <p class="section-subtitle">Have questions? Ask our team or browse existing answers</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Ask Question Form -->
+                    <div class="col-lg-6">
+                        <div class="ask-question-form">
+                            <h4 class="form-title">Ask a Question</h4>
+                            <div id="questionForm">
+                                
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Your Question</label>
+                                    <textarea class="form-control" id="customerQuestion" rows="4"
+                                              placeholder="Ask about ingredients, preparation, allergens, etc."></textarea>
+                                </div>
+                                <button onclick="sendQuestion();" class="btn btn-submit-question">
+                                    <i class="bi bi-send"></i> Submit Question
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Existing Q&A -->
+                    <div class="col-lg-6">
+                        <div class="qa-list" id="question-container">
+                            <h4 class="form-title">Previous Questions</h4>
+
+<!--                             Q&A Item 1 
+                            <div class="qa-item">
+                                <div class="question">
+                                    <div class="question-meta">
+                                        <strong>Sarah M.</strong>
+                                        <span class="question-date">2 days ago</span>
+                                    </div>
+                                    <p class="question-text">Is this salmon wild-caught or farm-raised? I'm looking for sustainable seafood
+                                        options.</p>
+                                </div>
+                                <div class="answer">
+                                    <div class="answer-meta">
+                                        <strong>Chef Michael</strong>
+                                        <span class="answer-badge">Restaurant Team</span>
+                                        <span class="answer-date">1 day ago</span>
+                                    </div>
+                                    <p class="answer-text">Our salmon is sustainably sourced, wild-caught Atlantic salmon from certified
+                                        suppliers. We're committed to responsible seafood practices and can provide more details about our
+                                        sourcing upon request.</p>
+                                </div>
+                            </div>
+
+                             Q&A Item 2 
+                            <div class="qa-item">
+                                <div class="question">
+                                    <div class="question-meta">
+                                        <strong>David L.</strong>
+                                        <span class="question-date">5 days ago</span>
+                                    </div>
+                                    <p class="question-text">What spices are used in the signature blend? I have some food allergies.</p>
+                                </div>
+                                <div class="answer">
+                                    <div class="answer-meta">
+                                        <strong>Manager Lisa</strong>
+                                        <span class="answer-badge">Restaurant Team</span>
+                                        <span class="answer-date">4 days ago</span>
+                                    </div>
+                                    <p class="answer-text">Our signature blend includes dill, garlic powder, paprika, black pepper, and sea
+                                        salt. No common allergens like nuts or dairy in the spice mix. Please inform your server about
+                                        specific allergies when ordering.</p>
+                                </div>
+                            </div>
+
+                             Q&A Item 3 
+                            <div class="qa-item">
+                                <div class="question">
+                                    <div class="question-meta">
+                                        <strong>Jennifer K.</strong>
+                                        <span class="question-date">1 week ago</span>
+                                    </div>
+                                    <p class="question-text">Can this be prepared with less oil for a lighter option?</p>
+                                </div>
+                                <div class="answer">
+                                    <div class="answer-meta">
+                                        <strong>Chef Michael</strong>
+                                        <span class="answer-badge">Restaurant Team</span>
+                                        <span class="answer-date">1 week ago</span>
+                                    </div>
+                                    <p class="answer-text">Absolutely! We can prepare your salmon with minimal oil and focus on herbs and
+                                        lemon for flavor. Just mention this preference when ordering and we'll accommodate your request.</p>
+                                </div>
+                            </div>
+
+                             Load More Button 
+                            <button class="btn btn-load-more" onclick="loadMoreQA()">
+                                <i class="bi bi-plus-circle"></i> Load More Questions
+                            </button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+         <footer id="footer" class="footer">
+            <div class="container footer-top">
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-6 footer-about">
+                        <a href="index.html" class="logo d-flex align-items-center">
+                            <span class="sitename">FoodMart</span>
+                        </a>
+                        <div class="footer-contact pt-3">
+                            <p>No 85 Kandy road</p>
+                            <p>Sri Lanka</p>
+                            <p class="mt-3"><strong>Phone:</strong> <span>081 2345678</span></p>
+                            <p><strong>Email:</strong> <span>foodmart@gmail.com</span></p>
+                        </div>
+                        <div class="social-links d-flex mt-4">
+                            <a href=""><i class="bi bi-twitter-x"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="advancedSearch.html">Advanced Search</a></li>
+                            <li><a href="cart.html">cart</a></li>
+                            <li><a href="userProfile.html">My Profile</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Categories</h4>
+                        <ul>
+                            <li><a href="#">Main Courses</a></li>
+                            <li><a href="#">Salads</a></li>
+                            <li><a href="#">Desserts</a></li>
+                            <li><a href="#">Beverages</a></li>
+                            <li><a href="#">Special Offers</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 footer-newsletter">
+                        <h4>Stay Updated</h4>
+<!--                        <p>Subscribe to get the latest news and offers</p>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Your email">
+                            <input type="submit" value="Subscribe">
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="container copyright text-center mt-4">
+                <p>© <span>Copyright</span> <strong class="px-1 sitename">FoodMart</strong> <span>All Rights Reserved</span>
+                </p>
+                <div class="credits">
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+        </footer>
+
+
+
+
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+
+
+        <!-- Template Main JS File -->
+        <script src="assets/js/main.js"></script>
+         <script src="assets/js/notification.js"></script>
+        <script src="assets/js/singleProduct.js"></script>
+
+
+
+        <script>
+
+
+                                // Gallery functionality
+                                document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+                                    thumb.addEventListener('click', function () {
+                                        document.querySelector('.gallery-thumb.active').classList.remove('active');
+                                        this.classList.add('active');
+                                        document.getElementById('main-image').src = this.dataset.image;
+                                    });
+                                });
+
+
+
+                                // Quantity functions
+                                function increaseQuantity() {
+                                    const input = document.getElementById('add-to-cart-qty');
+//                                    if (parseInt(input.value) < 10) {
+                                        input.value = parseInt(input.value) + 1;
+                                        quantity = parseInt(input.value);
+
+//                                    }
+                                }
+
+                                function decreaseQuantity() {
+                                    const input = document.getElementById('add-to-cart-qty');
+                                    if (parseInt(input.value) > 1) {
+                                        input.value = parseInt(input.value) - 1;
+                                        quantity = parseInt(input.value);
+
+                                    }
+                                }
+
+
+
+
+
+        </script>
+
+
+
+    </body>
+
+</html>

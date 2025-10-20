@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>My Cart - FoodMart</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+
+        <!-- Favicons -->
+        <link href="assets/img/logoYellow.png" rel="icon">
+        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com" rel="preconnect">
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="assets/css/notification.css">
+
+        <!-- Main CSS File -->
+        <link href="assets/css/main.css" rel="stylesheet">
+
+        <style>
+            .cart-hero {
+                background: linear-gradient(rgba(12, 11, 9, 0.8), rgba(12, 11, 9, 0.8)), url('assets/img/hero-bg.jpg');
+                background-size: cover;
+                background-position: center;
+                padding: 120px 0 80px 0;
+                text-align: center;
+                color: var(--default-color);
+            }
+
+
+            @keyframes slideOut {
+                0% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: translateX(-100%);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes slideInRight {
+                0% {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideOutRight {
+                0% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+
+
+
+            .btn-apply-promo:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+
+            .promo-input:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+
+
+            .quantity-controls {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .quantity-input {
+                width: 60px;
+                height: 40px;
+                text-align: center;
+                font-size: 1rem;
+                border: 1px solid var(--accent-color, #ccc);
+                border-radius: 8px;
+                background-color: #1e1e1e; /* dark background for your theme */
+                color: #fff;
+                padding: 5px;
+            }
+
+            .cart-image-wrapper {
+                position: relative;
+                display: inline-block;
+            }
+
+            .not-available-label {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                background: rgba(255, 0, 0, 0.85);
+                color: white;
+                font-weight: bold;
+                padding: 4px 8px;
+                font-size: 12px;
+                border-radius: 4px;
+            }
+
+
+
+
+
+        </style>
+    </head>
+
+    <body class="cart-page" onload="loadCartItems();">
+
+        <header id="header" class="header fixed-top">
+            <div class="topbar d-flex align-items-center">
+                <div class="container d-flex justify-content-center justify-content-md-between">
+                    <div class="contact-info d-flex align-items-center">
+                        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">foodmart@gmail.com</a></i>
+                        <i class="bi bi-phone d-flex align-items-center ms-4"><span>081  2345678</span></i>
+                    </div>
+                    <div class="languages d-none d-md-flex align-items-center">
+                        <ul>
+                            <li><a href="signUp.html">Join Us</a></li>
+                            <li><a href="signIn.html">Log In</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="branding d-flex align-items-center">
+                <div class="container position-relative d-flex align-items-center justify-content-between">
+                    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                        <h1 class="sitename">FoodMart</h1>
+                    </a>
+
+                    <nav id="navmenu" class="navmenu">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="advancedSearch.html">Advanced Search</a></li>
+                            <li><a href="userProfile.html">My Account</a></li>
+                            <li><a href="cart.html" class="active">Cart</a></li>
+
+
+
+                        </ul>
+                        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                    </nav>
+
+                    <a class="btn-book-a-table d-none d-xl-block" href="#footer">Contact</a>
+                </div>
+            </div>
+
+        </header>
+
+
+        <main class="main">
+            <!-- Hero Section -->
+            <section class="cart-hero">
+                <div class="container">
+                    <h1>My Cart</h1>
+                    <p>Review your order and proceed to checkout</p>
+                </div>
+            </section>
+
+            <!-- Cart Section -->
+            <section class="cart-container" id="cart-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <!-- Cart Stats -->
+                            <div class="cart-stats">
+                                <h4>Order Summary</h4>
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-number" id="totalItems">3</span>
+                                        <span class="stat-label">Items</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number" id="totalQuantity">5</span>
+                                        <span class="stat-label">Quantity</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number" id="cartSubtotal">66.50</span>
+                                        <span class="stat-label">Subtotal (Rs.)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cart Items -->
+                            <div id="cartItems">
+                                <!-- Sample Cart Items -->
+
+
+
+                            </div>
+
+                            <!-- Empty Cart State -->
+                            <div id="emptyCart" class="empty-cart" style="display: none;">
+                                <i class="bi bi-cart-x"></i>
+                                <h3>Your Cart is Empty</h3>
+                                <p>Looks like you haven't added any dishes to your cart yet. Browse our delicious menu and
+                                    start ordering!</p>
+                                <a href="menu.html" class="btn-browse-menu">
+                                    <i class="bi bi-arrow-right"></i>Browse Menu
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+
+
+                            <!-- Cart Summary -->
+                            <div class="cart-summary">
+                                <h4>Order Total</h4>
+
+
+                                <div class="summary-row">
+                                    <span class="summary-label summary-total">Total:</span>
+                                    <span class="summary-value summary-total" id="summaryTotal"><span>Rs. </span><span id="summarySubtotal">$66.50</span></span>
+                                </div>
+
+                                <a class="btn-checkout" href="checkout.html">
+                                    <i class="bi bi-credit-card"></i>Proceed to Checkout
+
+                                </a>
+
+                                <a href="index.html" class="btn-continue-shopping">
+                                    <i class="bi bi-arrow-left"></i>Continue Shopping
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer id="footer" class="footer">
+            <div class="container footer-top">
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-6 footer-about">
+                        <a href="index.html" class="logo d-flex align-items-center">
+                            <span class="sitename">FoodMart</span>
+                        </a>
+                        <div class="footer-contact pt-3">
+                            <p>No 85 Kandy road</p>
+                            <p>Sri Lanka</p>
+                            <p class="mt-3"><strong>Phone:</strong> <span>081 2345678</span></p>
+                            <p><strong>Email:</strong> <span>foodmart@gmail.com</span></p>
+                        </div>
+                        <div class="social-links d-flex mt-4">
+                            <a href=""><i class="bi bi-twitter-x"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="advancedSearch.html">Advanced Search</a></li>
+                            <li><a href="cart.html">cart</a></li>
+                            <li><a href="userProfile.html">My Profile</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Categories</h4>
+                        <ul>
+                            <li><a href="#">Main Courses</a></li>
+                            <li><a href="#">Salads</a></li>
+                            <li><a href="#">Desserts</a></li>
+                            <li><a href="#">Beverages</a></li>
+                            <li><a href="#">Special Offers</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 footer-newsletter">
+                        <h4>Stay Updated</h4>
+                        <p>Subscribe to get the latest news and offers</p>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Your email">
+                            <input type="submit" value="Subscribe">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container copyright text-center mt-4">
+                <p>© <span>Copyright</span> <strong class="px-1 sitename">FoodMart</strong> <span>All Rights Reserved</span>
+                </p>
+                <div class="credits">
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+                class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+
+
+        <!-- Template Main JS File -->
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/notification.js"></script>
+        <script src="assets/js/cart.js"></script>
+
+        <script>
+
+        // Quantity functions
+        function increaseQuantity() {
+            const input = document.getElementById('add-to-cart-qty');
+            if (parseInt(input.value) < 10) {
+                input.value = parseInt(input.value) + 1;
+                quantity = parseInt(input.value);
+
+            }
+        }
+
+        function decreaseQuantity() {
+            const input = document.getElementById('add-to-cart-qty');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+                quantity = parseInt(input.value);
+
+            }
+        }
+
+
+
+
+        </script>
+
+    </body>
+
+</html>
